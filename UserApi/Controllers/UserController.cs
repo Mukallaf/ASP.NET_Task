@@ -25,7 +25,7 @@ namespace UserApi.Controllers
         [HttpGet("all")]
         public async Task<IActionResult> GetAllUsers([FromHeader(Name = "X-Admin-Key")] string? adminKey)
         {
-            // Only allow access with the secret admin key
+            
             var secretKey = _config["AdminSettings:SecretKey"];
             if (adminKey != secretKey)
                 return Unauthorized("Admin access only.");
@@ -72,14 +72,14 @@ namespace UserApi.Controllers
             var user = await _db.Users.FindAsync(id);
             if (user == null) return NotFound();
 
-            // Update name and phone
+          
             user.FullName = dto.FullName;
             user.Phone = dto.Phone;
 
-            // Update email if provided
+           
             if (!string.IsNullOrWhiteSpace(dto.NewEmail) && dto.NewEmail != user.Email)
             {
-                // Check if new email is already taken
+                
                 var emailTaken = await _db.Users.AnyAsync(u => u.Email == dto.NewEmail && u.Id != id);
                 if (emailTaken)
                     return BadRequest("Email already in use by another account.");
@@ -87,7 +87,7 @@ namespace UserApi.Controllers
                 user.Email = dto.NewEmail;
             }
 
-            // Update password if provided
+            
             if (!string.IsNullOrWhiteSpace(dto.NewPassword))
             {
                 if (string.IsNullOrWhiteSpace(dto.CurrentPassword))

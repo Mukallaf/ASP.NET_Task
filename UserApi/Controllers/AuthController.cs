@@ -17,7 +17,6 @@ namespace UserApi.Controllers
         private readonly AppDbContext _db;
         private readonly IConfiguration _config;
 
-        // Constructor FIRST — always before any methods
         public AuthController(AppDbContext db, IConfiguration config)
         {
             _db = db;

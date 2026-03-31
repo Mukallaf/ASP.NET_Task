@@ -76,7 +76,7 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-// CORS — put your actual MVC app port here
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowMvc", policy =>
@@ -90,7 +90,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-// Order matters!
+
 app.UseCors("AllowMvc");
 app.UseAuthentication();
 app.UseAuthorization();
