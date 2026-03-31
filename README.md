@@ -1,4 +1,4 @@
-# GTR Intern Task
+# ASP.NET Task
 
 A full-stack web application built with ASP.NET MVC and .NET Core Web API.
 
